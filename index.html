@@ -1,0 +1,180 @@
+<html>
+<head>
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
+  <script src="http://libs.cartocdn.com/cartodb.js/v3/3.11/cartodb.js"></script>
+  <style type="text/css">
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+        background: black;
+    }
+
+    #menu {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 700px;
+        height: 100px;
+        background: transparent;
+        z-index: 10;
+    }
+
+    #menu a { 
+      margin: 15px 10px 0 0;
+      float: right;
+      vertical-align: baseline;
+      width: 70px;
+      padding: 10px;
+      text-align: center;
+      font: bold 11px "Helvetica",Arial;
+      line-height: normal;
+      color: #555;
+      border-radius: 4px;
+      border: 1px solid #7A7B7C;
+	  
+      background: rgba(240, 240, 240, 0.85);
+      text-decoration: none;
+      cursor: pointer;
+	  box-shadow: 2px 2px 10px rgba(132, 148, 160, 0.5);
+    }
+	
+	#menu #interconnectors { width:120px }
+	
+
+    #menu a.selected, #hydro:hover {color: #349fad;
+	}
+	
+	 #menu a.selected, #interconnectors:hover {color: #FF6600;
+	}
+	
+	#menu a.selected, #wind:hover {color: #136400;
+	}
+	
+	#menu a.selected, #waste:hover {color: #D6301D;
+	}
+	
+	#menu a.selected, #solar:hover {color: #FFCC00;
+	}
+	
+	#menu a.selected, #coal:hover {color: #000000;
+	}
+	
+	#menu a.selected, #oil:hover {color: #6E28B2;
+	} 
+	
+	#menu a.selected, #gas:hover {color: #1754AD;
+	}
+	
+	#menu a.selected, #nuclear:hover {color: #ba2b76;
+	}
+	
+	#menu a.selected, #biomass:hover {color: #A7B734;}
+	
+	#menu a.selected, #all:hover {color: #000000;
+	}
+	
+#menu a.selected, #menu a:hover {
+	background-color: #ffffff;
+	
+	}
+
+    .cartodb-layer-selector-box,
+    .cartodb-searchbox,
+    .cartodb-share {
+        display: none !important;
+    }
+	
+	
+  </style>
+
+  <script>
+var layer;
+
+
+    function init() {
+        var url = 'https://rospearce.cartodb.com/api/v2/viz/d80f4b84-5561-11e5-af07-0e9d821ea90d/viz.json';
+        var visualizacion = cartodb.createVis("map", url)
+            .done(function(vis, layers) {
+                layer = layers[1];
+            });
+    }
+
+    function showLayer(layerToShow) {
+
+        //turn off all layers
+        layer.getSubLayers().forEach(function(i) {
+            i.hide()
+        });
+
+        switch (layerToShow.id) {
+            case "interconnectors":
+                layer.getSubLayer(0).show();
+				layer.getSubLayer(1).show();
+                break;
+			case "all":
+                layer.getSubLayer(0).show();
+				layer.getSubLayer(1).show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk").show();
+                break;
+			case "coal":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Coal' OR technology_type = 'Coal / biomass' OR technology_type = 'Coal / oil' ").show();
+                break;
+			case "wind":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Wind Onshore' OR technology_type = 'Wind Offshore' ").show();
+                break;
+			case "solar":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Solar Photovoltaics'").show();
+                break;
+			case "nuclear":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Nuclear'").show();
+                break;
+			case "biomass":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Biomass (dedicated)' OR technology_type = 'Biomass (co-firing)' OR technology_type = 'Coal / biomass' ").show();
+                break;
+			case "hydro":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Large Hydro' OR technology_type = 'Small Hydro' OR technology_type = 'Pumped storage' OR technology_type = 'Shoreline Wave' OR technology_type = 'Tidal Barrage and Tidal Stream'").show();
+                break;
+			case "waste":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'EfW Incineration' OR technology_type = 'Waste' OR technology_type = 'Landfill Gas' OR technology_type = 'Meat & bone meal' OR technology_type = 'Sewage Sludge Digestion'").show();
+                break;
+			case "gas":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Gas' OR technology_type = 'CCGT' OR technology_type = 'OCGT'").show();
+                break;
+			case "oil":
+				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Oil' OR technology_type = 'Diesel' OR technology_type = 'Gas oil' OR technology_type = 'Gas oil/kerosene' OR technology_type = 'Coal/oil' OR technology_type = 'Light oil' ").show();
+                break;
+        }
+
+        return true;
+    }
+  
+  </script>
+</head>
+
+<body onload="init()">
+  <div id='map'></div>
+  <div id='menu'>
+        <a href="#interconnectors" id="interconnectors" class="button interconnectors" onclick="showLayer(this);">INTERCONNECTORS</a>
+        <a href="#hydro" id="hydro" class="hydro" onclick="showLayer(this);">HYDRO</a>
+        <a href="#gas" id="gas" class="gas" onclick="showLayer(this);">GAS</a>
+        <a href="#coal" id="coal" class="coal" onclick="showLayer(this);">COAL</a>
+        <a href="#biomass" id="biomass" class="biomass" onclick="showLayer(this);">BIOMASS</a>
+        <a href="#all" id="all" class="all" onclick="showLayer(this);">ALL</a>
+        <a href="#wind" id="wind" class="wind" onclick="showLayer(this);">WIND</a>
+        <a href="#waste" id="waste" class="waste" onclick="showLayer(this);">WASTE</a>
+        <a href="#solar" id="solar" class="solar" onclick="showLayer(this);">SOLAR</a>
+        <a href="#oil" id="oil" class="oil" onclick="showLayer(this);">OIL</a>
+        <a href="#nuclear" id="nuclear" class="nuclear" onclick="showLayer(this);">NUCLEAR</a>
+  </div>
+  <div id='logo'></div>
+  <div id='return'></div>
+</body>
+</html>
