@@ -114,7 +114,7 @@ var layer;
             i.hide()
         });
 
-        switch (layerToShow.id) {
+             switch (layerToShow.id) {
             case "interconnectors":
                 layer.getSubLayer(0).show();
 				layer.getSubLayer(1).show();
@@ -122,34 +122,34 @@ var layer;
 			case "all":
                 layer.getSubLayer(0).show();
 				layer.getSubLayer(1).show();
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update").show();
                 break;
 			case "coal":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Coal' OR technology_type = 'Coal / biomass' OR technology_type = 'Coal / oil' ").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Coal' OR technology_type = 'Coal / biomass' OR technology_type = 'Coal / oil' ").show();
                 break;
 			case "wind":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Wind Onshore' OR technology_type = 'Wind Offshore' ").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Wind Onshore' OR technology_type = 'Wind Offshore' ").show();
                 break;
 			case "solar":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Solar Photovoltaics'").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Solar Photovoltaics'").show();
                 break;
 			case "nuclear":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Nuclear'").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Nuclear'").show();
                 break;
 			case "biomass":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Biomass (dedicated)' OR technology_type = 'Biomass (co-firing)' OR technology_type = 'Coal / biomass' ").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Biomass (dedicated)' OR technology_type = 'Biomass (co-firing)' OR technology_type = 'Coal / biomass' ").show();
                 break;
 			case "hydro":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Large Hydro' OR technology_type = 'Small Hydro' OR technology_type = 'Pumped storage' OR technology_type = 'Shoreline Wave' OR technology_type = 'Tidal Barrage and Tidal Stream'").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Large Hydro' OR technology_type = 'Small Hydro' OR technology_type = 'Pumped storage' OR technology_type = 'Shoreline Wave' OR technology_type = 'Tidal Barrage and Tidal Stream'").show();
                 break;
 			case "waste":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'EfW Incineration' OR technology_type = 'Waste' OR technology_type = 'Landfill Gas' OR technology_type = 'Meat & bone meal' OR technology_type = 'Sewage Sludge Digestion'").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'EfW Incineration' OR technology_type = 'Waste' OR technology_type = 'Landfill Gas' OR technology_type = 'Meat & bone meal' OR technology_type = 'Sewage Sludge Digestion'").show();
                 break;
 			case "gas":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Gas' OR technology_type = 'CCGT' OR technology_type = 'OCGT'").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Gas' OR technology_type = 'CCGT' OR technology_type = 'OCGT'").show();
                 break;
 			case "oil":
-				layer.getSubLayer(2).setSQL("SELECT * FROM operational_power_sources_in_the_uk WHERE technology_type = 'Oil' OR technology_type = 'Diesel' OR technology_type = 'Gas oil' OR technology_type = 'Gas oil/kerosene' OR technology_type = 'Coal/oil' OR technology_type = 'Light oil' ").show();
+				layer.getSubLayer(2).setSQL("SELECT * FROM power_sources_in_the_uk_aug_2015_update WHERE technology_type = 'Oil' OR technology_type = 'Diesel' OR technology_type = 'Gas oil' OR technology_type = 'Gas oil/kerosene' OR technology_type = 'Coal/oil' OR technology_type = 'Light oil' ").show();
                 break;
         }
 
