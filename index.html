@@ -3,36 +3,34 @@
   <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
   <script src="http://libs.cartocdn.com/cartodb.js/v3/3.11/cartodb.js"></script>
   <style type="text/css">
-    html,
+ html,
     body {
         width: 100%;
         height: 100%;
         padding: 0;
         margin: 0;
     }
-
     #map {
         width: 100%;
         height: 100%;
         background: black;
     }
-
     #menu {
         position: absolute;
         top: 5px;
         right: 10px;
-        width: 700px;
+        width: 780px;
         height: 100px;
         background: transparent;
         z-index: 10;
     }
-
     #menu a { 
       margin: 15px 10px 0 0;
       float: right;
       vertical-align: baseline;
       width: 70px;
       padding: 10px;
+	  padding-left: 20px;
       text-align: center;
       font: bold 11px "Helvetica",Arial;
       line-height: normal;
@@ -46,52 +44,357 @@
 	  box-shadow: 2px 2px 10px rgba(132, 148, 160, 0.5);
     }
 	
-	#menu #interconnectors { width:120px }
-	
+#menu #interconnectors { width:120px }
 
-    #menu a.selected, #hydro:hover {color: #349fad;
-	}
 	
-	 #menu a.selected, #interconnectors:hover {color: #FF6600;
-	}
-	
-	#menu a.selected, #wind:hover {color: #136400;
-	}
-	
-	#menu a.selected, #waste:hover {color: #D6301D;
-	}
-	
-	#menu a.selected, #solar:hover {color: #FFCC00;
-	}
-	
-	#menu a.selected, #coal:hover {color: #000000;
-	}
-	
-	#menu a.selected, #oil:hover {color: #6E28B2;
-	} 
-	
-	#menu a.selected, #gas:hover {color: #1754AD;
-	}
-	
-	#menu a.selected, #nuclear:hover {color: #ba2b76;
-	}
-	
-	#menu a.selected, #biomass:hover {color: #A7B734;}
-	
-	#menu a.selected, #all:hover {color: #000000;
-	}
-	
-#menu a.selected, #menu a:hover {
-	background-color: #ffffff;
-	
-	}
+#menu #hydro {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399175/dd595aa2-6ea8-11e5-9daf-1208d1d26751.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
 
+#menu #hydro:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #hydro:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #wind {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399173/d45e9098-6ea8-11e5-8996-2092fe8bb984.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #wind:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #wind:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #solar {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399174/d99773ea-6ea8-11e5-8fff-8c9c03648d5d.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #solar:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #solar:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #nuclear {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399164/cbe27416-6ea8-11e5-8c74-b06174de6705.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #nuclear:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #nuclear:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #biomass {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399122/a96cf528-6ea8-11e5-8e02-b4fb309e1bd4.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #biomass:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #biomass:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #oil {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399125/abe2166c-6ea8-11e5-8c38-1da9f27994ac.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #oil:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #oil:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #gas {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399150/bc58f11e-6ea8-11e5-9532-085be4e5844c.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #gas:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #gas:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+	
+#menu #coal {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399152/c21d71f6-6ea8-11e5-9af1-0881b88e33c2.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #coal:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #coal:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #waste {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399160/c7a0ab02-6ea8-11e5-9e1b-fe6b2e248248.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #waste:before {
+  background-image: inherit;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #waste:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #interconnectors {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399117/a4866cd8-6ea8-11e5-82a8-470f60303a42.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #interconnectors:before {
+  background-image: inherit;
+  background-position: 58% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #interconnectors:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+#menu #all {
+  background: url('https://cloud.githubusercontent.com/assets/11757759/10399109/9f7a55ba-6ea8-11e5-8243-53d48ce8dce6.jpg') 0 0 no-repeat;
+  background-size: cover;
+  color: #555;
+  display: inline-block;
+   padding-left: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+#menu #all:before {
+  background-image: inherit;
+  background-position: 58% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+#menu #all:hover:before {
+  opacity: 0;
+  color: #000000;
+}
+
+
+	
     .cartodb-layer-selector-box,
     .cartodb-searchbox,
     .cartodb-share {
         display: none !important;
     }
-	
 	
   </style>
 
